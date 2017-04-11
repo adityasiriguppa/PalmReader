@@ -1,0 +1,15 @@
+im = imclearborder(im2bw(a));
+im_fill = imfill(im, 'holes');
+s = regionprops(im_fill, 'Area', 'PixelList');
+[~,ind] = max([s.Area]);
+pix = sub2ind(size(im), s(ind).PixelList(:,2), s(ind).PixelList(:,1));
+out = zeros(size(im));
+out(pix) = im(pix);
+imshow(out);
+out=uint8(out);
+out1=imfill(out);
+abc(:,:,1)=out1;
+abc(:,:,2)=out1;
+abc(:,:,3)=out1;
+out2=abc.*a;
+imshow(out2);
